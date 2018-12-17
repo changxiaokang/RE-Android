@@ -47,7 +47,12 @@ def get_pkg_pid(pkg):
         tmp = line.split(" ")
         print tmp
         xxx = tmp[-1].strip('\r\n')
-        pid = tmp[1]
+        
+        if tmp[0] == "":
+            pid = tmp[1]
+        else:
+            pid = tmp[0]
+        
         if xxx == pkg:
             print pkg + "_pid: " + pid
             return pid
@@ -71,6 +76,7 @@ def jdwp_forward(src, dst):
 def jdb_connect(ipaddr, port):
     cmd = "jdb -connect com.sun.jdi.SocketAttach:hostname=" + ipaddr + ",port=" + port
     print "\r\n" + cmd
+    print "Press any key to start debugging >>>>>>"
     os.system("pause")
     os.system(cmd)
     time.sleep(1)
@@ -99,3 +105,4 @@ def main(argv):
    
 if __name__ == "__main__":
     main(sys.argv)
+    os.system("pause")
