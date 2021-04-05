@@ -39,9 +39,10 @@ def am_start(pkg, act):
     time.sleep(1)
 
 def get_pkg_pid(pkg):
-    cmd = "adb shell ps | grep " + pkg
+    cmd = "adb shell ps | findstr " + pkg
     print "\r\n" + cmd
     lines = os.popen(cmd).readlines()
+    print lines
     
     for line in lines:
         tmp = line.split(" ")
